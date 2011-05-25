@@ -78,7 +78,7 @@ class Kohana_Kohana_Exception extends Exception {
 	 *
 	 * @uses    Kohana_Exception::text
 	 * @param   object   exception object
-	 * @param   object   stack trace override array
+	 * @param   array    stack trace override array
 	 * @return  boolean
 	 */
 	public static function handler(Exception $e, array $trace = NULL)
@@ -92,9 +92,11 @@ class Kohana_Kohana_Exception extends Exception {
 			$file    = $e->getFile();
 			$line    = $e->getLine();
 
-			// Get the exception backtrace
-			if (! $trace)
+			if ( ! $trace)
+			{
+				// Get the exception backtrace
 				$trace = $e->getTrace();
+			}
 
 			if ($e instanceof ErrorException)
 			{
